@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Best Friend 💛</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* BACKGROUND */
+body{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  font-family:sans-serif;
+  background:linear-gradient(135deg,#fff9c4,#ffe082);
+}
+
+/* MESSAGE TEXT */
+.message{
+  position:absolute;
+  top:30px;
+  font-family:'Great Vibes', cursive;
+  font-size:40px;
+  color:#8d6e63;
+  text-shadow:0 0 10px rgba(255,255,255,0.8),
+              0 0 20px rgba(255,223,100,0.8);
+  animation:fadeIn 2s ease-in-out;
+}
+
+/* FLOATING HEARTS */
+.heart{
+  position:absolute;
+  bottom:-50px;
+  font-size:20px;
+  color:rgba(255,215,0,0.7);
+  animation:floatUp 8s linear infinite;
+}
+
+@keyframes floatUp{
+  0%{
+    transform:translateY(0) scale(0.8);
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-110vh) scale(1.5);
+    opacity:0;
+  }
+}
+
+/* STAGE */
+.stage{
+  width:800px;
+  height:450px;
+  border-radius:20px;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,0.8);
+  background:black;
+  position:relative;
+
+  box-shadow:0 0 20px #ffd54f, 0 0 40px #ffd54f;
+  animation:glow 3s ease-in-out infinite alternate,
+             floatBox 4s ease-in-out infinite;
+}
+
+/* GLOW */
+@keyframes glow{
+  from{
+    box-shadow:0 0 15px #ffd54f, 0 0 30px #ffd54f;
+  }
+  to{
+    box-shadow:0 0 35px #ffca28, 0 0 70px #ffca28;
+  }
+}
+
+/* FLOAT BOX */
+@keyframes floatBox{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+
+/* VIDEO */
+.stage video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* TEXT */
+.tap-text{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  text-align:center;
+  color:white;
+  font-size:15px;
+  background:rgba(0,0,0,0.4);
+  padding:6px;
+
+}
+
+/* FADE */
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(-20px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MESSAGE -->
+<div class="message">This is for you Bhoo Thalli👻</div>
+
+<div class="stage">
+  
+  <video id="myVideo" autoplay muted loop>
+    <source src="https://res.cloudinary.com/dqkpvipvz/video/upload/v1774628640/video_vbmfuk.mp4" type="video/mp4">
+  </video>
+
+  <div class="tap-text">Touch my 💛</div>
+
+</div>
+
+<script>
+const video = document.getElementById("myVideo");
+const text = document.querySelector(".tap-text");
+
+/* ENABLE SOUND */
+document.body.addEventListener("click", () => {
+  video.muted = false;
+  text.style.display = "none";
+}, { once: true });
+
+/* HEARTS */
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💛";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random()*20) + "px";
+  heart.style.animationDuration = (5 + Math.random()*5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },8000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
